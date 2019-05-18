@@ -1,0 +1,56 @@
+#background
+{
+    width:100vw;
+    height:100vh;
+    background: linear-gradient(to top, #f3f3f3 70%, #ed1b2b 30%);
+}
+
+#login
+{
+    position:relative;
+    top:20vh;
+    background: #fff;
+    border-radius: 2px;
+    display: inline-block;
+    height: 45vh;
+    margin: 1rem;
+    width: 45vw;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.loginTitle
+{
+    color:black;
+    text-align:initial;
+    margin:5%;
+    margin-bottom: 0;
+    padding:0;
+}
+
+.loginStory
+{
+    margin:5%;
+    margin-bottom: 2%;
+    margin-top:2%;
+    padding:0;
+    text-align:initial;
+    color: #6f725c;
+}
+
+#loginButton
+{
+    /*position:relative;*/
+    background-color: #ffb600 !important;
+    color: rgba(97, 22, 13, 0.7);
+    left:37%;
+    margin:5% !important;
+    margin-top:8% !important;
+    width:15% !important;
+    text-align:center !important;
+    /*font-size:1.2vw !important;*/
+}
+/*#loginButton :hover*/
+/*{*/
+    /*background-color: #be8700 !important;*/
+/*}*/
+/*height:350 px width 700px*/

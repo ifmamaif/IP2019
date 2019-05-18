@@ -353,7 +353,9 @@ class App extends Component {
   }
 
   titleScreen() {
+
     return <TitleScreen beginStory={this.beginStory.bind(this)}  />;
+
     // toggleLoadMenu={this.toggleLoadMenu.bind(this)}
   }
 

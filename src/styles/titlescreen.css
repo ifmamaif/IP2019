@@ -8,7 +8,7 @@
 }
 
 body{
-  background-image : url("../story/bg/landing.png");
+  /*background-image : url("../story/bg/landing.png");*/
   height: 90vh; /* You must set a specified height */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
