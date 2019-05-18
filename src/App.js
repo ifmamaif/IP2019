@@ -7,6 +7,7 @@ import WheelReact from "wheel-react";
 // API
 import story from "./story/story";
 import choices from "./story/choices";
+import ajax from "./services/Auth"
 // Components
 import TitleScreen from "./components/TitleScreen";
 import Backlog from "./components/Backlog";
@@ -15,6 +16,10 @@ import ConfigMenu from "./components/ConfigMenu";
 import RenderFrame from "./components/RenderFrame";
 import MenuButtons from "./components/MenuButtons";
 import SaveLoadMenu from "./components/SaveLoadMenu";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faCheckSquare, faCoffee,faVolumeUp,faVolumeMute  } from '@fortawesome/free-solid-svg-icons'
+import Bird from "./components/Bird";
 // CSS
 import "./styles/config.css";
 import "./styles/container.css";
@@ -51,6 +56,7 @@ const INITIAL_STATE = {
   isSkipping: false
 };
 
+library.add(fab, faCheckSquare,faVolumeUp, faCoffee,faVolumeMute );
 class App extends Component {
   constructor() {
     super();
@@ -74,8 +80,14 @@ class App extends Component {
     });
   }
 
-  componentDidMount() {
-    window.addEventListener("beforeunload", e => (e.returnValue = "Unsaved changes will be lost."));
+  async componentDidMount() {
+    // window.addEventListener("beforeunload", e => (e.returnValue = "Unsaved changes will be lost."));
+    const data = await ajax.sotryAuth();
+    console.log(data);
+
+    // this.setState({
+    //   ceva: da
+    // })
   }
 
   setFrameFromChoice(choice, routeBegins) {
@@ -138,6 +150,7 @@ class App extends Component {
       index = 0;
     }
     // Updates story with new index
+    debugger;
     this.setState({
       index: index,
       bg: story[index].bg,
@@ -198,7 +211,7 @@ class App extends Component {
   }
 
   handleChoiceSelected(event) {
-    this.stopSkip();
+    // this.stopSkip();
     this.setFrameFromChoice(event.currentTarget.name, event.currentTarget.alt);
     let nextIndex = 0;
     if (event.currentTarget.id) {
@@ -214,7 +227,7 @@ class App extends Component {
 
   renderChoiceMenu() {
     return (
-      <ChoiceMenu choiceOptions={this.state.choiceOptions} onChoiceSelected={this.handleChoiceSelected.bind(this)} />
+      <ChoiceMenu choiceOptions={this.state.choiceOptions} onConClickhoiceSelected={this.handleChoiceSelected.bind(this)} />
     );
   }
 
@@ -254,80 +267,80 @@ class App extends Component {
     }));
   }
 
-  toggleSaveMenu() {
-    if (this.state.configMenuShown) {
-      this.setState({ configMenuShown: false });
-    }
-    if (this.state.loadMenuShown) {
-      this.setState({ loadMenuShown: false });
-    }
-    if (this.state.backlogShown) {
-      this.setState({ backlogShown: false });
-    }
-    this.setState(prevState => ({
-      saveMenuShown: !prevState.saveMenuShown
-    }));
-  }
+  // toggleSaveMenu() {
+  //   if (this.state.configMenuShown) {
+  //     this.setState({ configMenuShown: false });
+  //   }
+  //   if (this.state.loadMenuShown) {
+  //     this.setState({ loadMenuShown: false });
+  //   }
+  //   if (this.state.backlogShown) {
+  //     this.setState({ backlogShown: false });
+  //   }
+  //   this.setState(prevState => ({
+  //     saveMenuShown: !prevState.saveMenuShown
+  //   }));
+  // }
+  //
+  // toggleLoadMenu() {
+  //   if (this.state.configMenuShown) {
+  //     this.setState({ configMenuShown: false });
+  //   }
+  //   if (this.state.saveMenuShown) {
+  //     this.setState({ saveMenuShown: false });
+  //   }
+  //   if (this.state.backlogShown) {
+  //     this.setState({ backlogShown: false });
+  //   }
+  //   this.setState(prevState => ({
+  //     loadMenuShown: !prevState.loadMenuShown
+  //   }));
+  // }
 
-  toggleLoadMenu() {
-    if (this.state.configMenuShown) {
-      this.setState({ configMenuShown: false });
-    }
-    if (this.state.saveMenuShown) {
-      this.setState({ saveMenuShown: false });
-    }
-    if (this.state.backlogShown) {
-      this.setState({ backlogShown: false });
-    }
-    this.setState(prevState => ({
-      loadMenuShown: !prevState.loadMenuShown
-    }));
-  }
-
-  startSkip() {
-    const intervalTime = prompt("How many milliseconds per frame would you like?", "75");
-    if (intervalTime > 0) {
-      this.setState({
-        isSkipping: true
-      });
-      this.textSkipper = setInterval(this.setNextFrame.bind(this), intervalTime);
-    }
-  }
-
-  stopSkip() {
-    clearInterval(this.textSkipper);
-    this.setState({
-      isSkipping: false
-    });
-  }
-
-  saveSlot(number) {
-    var d = new Date();
-    var datestring =
-      ("0" + (d.getMonth() + 1)).slice(-2) +
-      "-" +
-      ("0" + d.getDate()).slice(-2) +
-      "-" +
-      d.getFullYear() +
-      " " +
-      ("0" + d.getHours()).slice(-2) +
-      ":" +
-      ("0" + d.getMinutes()).slice(-2);
-
-    localStorage.setItem("time" + number, datestring); // saves the current time to the save slot
-    localStorage.setItem(number, JSON.stringify(this.state, (k, v) => (v === undefined ? null : v)));
-    this.setState(this.state);
-  }
-
-  loadSlot(number) {
-    this.setState(JSON.parse(localStorage.getItem(number)));
-    this.setState({
-      saveMenuShown: false
-    }); // save menu to false and not load because save is true when saving
-  }
+  // startSkip() {
+  //   const intervalTime = prompt("How many milliseconds per frame would you like?", "75");
+  //   if (intervalTime > 0) {
+  //     this.setState({
+  //       isSkipping: true
+  //     });
+  //     this.textSkipper = setInterval(this.setNextFrame.bind(this), intervalTime);
+  //   }
+  // }
+  //
+  // stopSkip() {
+  //   clearInterval(this.textSkipper);
+  //   this.setState({
+  //     isSkipping: false
+  //   });
+  // }
+  //
+  // saveSlot(number) {
+  //   var d = new Date();
+  //   var datestring =
+  //     ("0" + (d.getMonth() + 1)).slice(-2) +
+  //     "-" +
+  //     ("0" + d.getDate()).slice(-2) +
+  //     "-" +
+  //     d.getFullYear() +
+  //     " " +
+  //     ("0" + d.getHours()).slice(-2) +
+  //     ":" +
+  //     ("0" + d.getMinutes()).slice(-2);
+  //
+  //   localStorage.setItem("time" + number, datestring); // saves the current time to the save slot
+  //   localStorage.setItem(number, JSON.stringify(this.state, (k, v) => (v === undefined ? null : v)));
+  //   this.setState(this.state);
+  // }
+  //
+  // loadSlot(number) {
+  //   this.setState(JSON.parse(localStorage.getItem(number)));
+  //   this.setState({
+  //     saveMenuShown: false
+  //   }); // save menu to false and not load because save is true when saving
+  // }
 
   beginStory() {
-    this.stopSkip();
+    // this.stopSkip();
     this.setState({
       titleScreenShown: false,
       frameIsRendering: true
@@ -340,7 +353,8 @@ class App extends Component {
   }
 
   titleScreen() {
-    return <TitleScreen beginStory={this.beginStory.bind(this)} toggleLoadMenu={this.toggleLoadMenu.bind(this)} />;
+    return <TitleScreen beginStory={this.beginStory.bind(this)}  />;
+    // toggleLoadMenu={this.toggleLoadMenu.bind(this)}
   }
 
   configMenu() {
@@ -398,12 +412,12 @@ class App extends Component {
       <MenuButtons
         menuButtonsShown={this.state.menuButtonsShown}
         setNextFrame={this.setNextFrame.bind(this)}
-        toggleSaveMenu={this.toggleSaveMenu.bind(this)}
-        toggleLoadMenu={this.toggleLoadMenu.bind(this)}
-        saveSlot={this.saveSlot.bind(this)}
-        loadSlot={this.loadSlot.bind(this)}
-        saveMenuShown={this.state.saveMenuShown}
-        loadMenuShown={this.state.loadMenuShown}
+        // toggleSaveMenu={this.toggleSaveMenu.bind(this)}
+        // toggleLoadMenu={this.toggleLoadMenu.bind(this)}
+        // saveSlot={this.saveSlot.bind(this)}
+        // loadSlot={this.loadSlot.bind(this)}
+        // saveMenuShown={this.state.saveMenuShown}
+        // loadMenuShown={this.state.loadMenuShown}
         toggleConfigMenu={this.toggleConfigMenu.bind(this)}
         configMenuShown={this.state.configMenuShown}
         toggleBacklog={this.toggleBacklog.bind(this)}
@@ -411,9 +425,9 @@ class App extends Component {
         toggleFullscreen={() => this.setState({ isFull: true })}
         textBoxShown={this.state.textBoxShown}
         backlogShown={this.state.backlogShown}
-        startSkip={this.startSkip.bind(this)}
-        stopSkip={this.stopSkip.bind(this)}
-        isSkipping={this.state.isSkipping}
+        // startSkip={this.startSkip.bind(this)}
+        // stopSkip={this.stopSkip.bind(this)}
+        // isSkipping={this.state.isSkipping}
       />
     );
   }
@@ -460,10 +474,10 @@ class App extends Component {
 
   render() {
     let zoomMultiplier = 0;
-    if (window.innerWidth * 1 / window.innerHeight <= 1280 * 1 / 720) {
-      zoomMultiplier = window.innerWidth * 1 / 1280;
+    if (window.innerWidth / window.innerHeight <= 1280 / 720) {
+      zoomMultiplier = window.innerWidth / 1280;
     } else {
-      zoomMultiplier = window.innerHeight * 1 / 720;
+      zoomMultiplier = window.innerHeight / 720;
     }
 
     return (
@@ -476,6 +490,7 @@ class App extends Component {
             transitionEnterTimeout={400}
             transitionLeaveTimeout={400}
           >
+            {/*<Bird/>*/}
             {this.state.titleScreenShown ? this.titleScreen() : null}
             {this.state.frameIsRendering ? this.renderFrame() : null}
             {/* GUI menu buttons */}

@@ -1,29 +1,30 @@
 import React from "react";
-
+import Music from"./Music"
+import backgroundMusic from '../story/sounds/spiritOfFreedom.mp3';
+import Bird from "./Bird";
 function TitleScreen(props) {
   return (
-    <div className="overlay" id="title-overlay">
+      <div>
+        <Bird/>
+    <div>
+      <Music url={backgroundMusic}/>
       <div id="title-screen-header">
-        <div id="logo">Some React Visual Novel</div>
+        <div id="logo">The Fairytale Machine</div>
         <ul id="menu">
           <li>
-            <span onClick={props.beginStory}>Begin</span>
+            <span className="center-custom" onClick={props.beginStory}>Begin</span>
           </li>
-          <li>
-            <span onClick={props.toggleLoadMenu}>Continue</span>
-          </li>
-          <li>
-            <span>
-              <a href="https://github.com/nashkenazy/generic-vn" target="_blank" rel="noopener noreferrer">
-                Github
-              </a>
-            </span>
-          </li>
+          {/*<li>*/}
+            {/*<span onClick={props.toggleLoadMenu}>Continue</span>*/}
+          {/*</li>*/}
           <li />
+          {/*<span className="abracadabra">Say Abracadabra to start the adventure of your life !</span>*/}
         </ul>
       </div>
     </div>
+      </div>
   );
 }
 
 export default TitleScreen;
+// className="overlay" id="title-overlay"

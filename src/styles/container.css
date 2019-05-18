@@ -69,6 +69,8 @@
   position: fixed;
   left: 50%;
   margin-left: -640px;
+  width:1280px !important;
+  height:720px !important;
 }
 
 .overlay {
