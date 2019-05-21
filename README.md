@@ -2,7 +2,7 @@
 IngineriaProgramariiFMI2019
 
 # VoiceRec requirements:
-[PyAudio](https://pypi.org/project/PyAudio/). 
+[PyAudio](https://pypi.org/project/PyAudio/).   
 [SpeechRecognition](https://pypi.org/project/SpeechRecognition/)
 
   # Installation
@@ -24,3 +24,5 @@ IngineriaProgramariiFMI2019
   ```
   pip3 install SpeechRecognition 
   ```
+# Trello
+https://trello.com/b/QmC0ygUe/backlog.  
