@@ -12,5 +12,5 @@ import WatsonAPI from "./components/WatsonAPI"
 import ChooseYourOwnAdventure from "./components/ChooseYourOwnAdventure";
 
 // ReactDOM.render(<Disperare/>, document.getElementById("root"));
-ReactDOM.render(<Router history ={history}><ChooseYourOwnAdventure/></Router>, document.getElementById("root"));
+ReactDOM.render(<Router history ={history}><Disperare/></Router>, document.getElementById("root"));
 registerServiceWorker();

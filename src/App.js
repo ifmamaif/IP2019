@@ -7,7 +7,7 @@ import WheelReact from "wheel-react";
 // API
 import story from "./story/story";
 import choices from "./story/choices";
-import ajax from "./services/Auth"
+// import ajax from "./services/Auth"
 // Components
 import TitleScreen from "./components/TitleScreen";
 import Backlog from "./components/Backlog";
@@ -57,6 +57,7 @@ const INITIAL_STATE = {
 };
 
 library.add(fab, faCheckSquare,faVolumeUp, faCoffee,faVolumeMute );
+
 class App extends Component {
   constructor() {
     super();
@@ -81,13 +82,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    // window.addEventListener("beforeunload", e => (e.returnValue = "Unsaved changes will be lost."));
-    const data = await ajax.sotryAuth();
-    console.log(data);
 
-    // this.setState({
-    //   ceva: da
-    // })
   }
 
   setFrameFromChoice(choice, routeBegins) {
@@ -150,7 +145,6 @@ class App extends Component {
       index = 0;
     }
     // Updates story with new index
-    debugger;
     this.setState({
       index: index,
       bg: story[index].bg,
@@ -352,9 +346,10 @@ class App extends Component {
     });
   }
 
-  titleScreen() {
+  titleScreen= () => {
 
-    return <TitleScreen beginStory={this.beginStory.bind(this)}  />;
+    console.log("detail",this.props.location);
+    return <TitleScreen beginStory={this.beginStory.bind(this)} title= {this.props.location.state}   />; //title= {this.props.location.state.detail }
 
     // toggleLoadMenu={this.toggleLoadMenu.bind(this)}
   }

@@ -7,7 +7,7 @@ import Record from "../components/Record"
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import strings from '../res/strings'
-import {Redirect, BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import {Redirect, BrowserRouter, Switch, Route, Link, withRouter} from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props) {
@@ -187,5 +187,5 @@ const styles = {
     }
 };
 
-export default Register;
+export default withRouter(Register);
 

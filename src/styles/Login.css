@@ -3,7 +3,7 @@ body
     width:100vw;
     height:100vh;
     /*background: linear-gradient(to top, #f3f3f3 70%, #ed1b2b 30%);*/
-    background: rgba(0, 0, 0, .1) url("https://i.pinimg.com/originals/c5/be/87/c5be874a7fe177b4be2c55bbe6dea7d3.jpg");
+    background: rgba(0, 0, 0, .1) url("https://i.pinimg.com/originals/c5/be/87/c5be874a7fe177b4be2c55bbe6dea7d3.jpg") !important;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */

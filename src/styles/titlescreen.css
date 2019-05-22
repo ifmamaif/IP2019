@@ -4,15 +4,24 @@
 @import url(https://fonts.googleapis.com/css?family=Squada+One);
 
 #title-overlay {
-  background-image : url("../story/bg/landing.png");
+  /*background-image : url("../story/bg/landing.png") !important;*/
 }
 
 body{
-  /*background-image : url("../story/bg/landing.png");*/
-  height: 90vh; /* You must set a specified height */
+  /*background-image : url("../story/bg/landing.png") !important;*/
+  /*height: 90vh; !* You must set a specified height *!*/
+  /*background-position: center; !* Center the image *!*/
+  /*background-repeat: no-repeat; !* Do not repeat the image *!*/
+  /*background-size: contain; !* Resize the background image to cover the entire container *!*/
+
+  width:100vw;
+  height:100vh;
+  /*background: linear-gradient(to top, #f3f3f3 70%, #ed1b2b 30%);*/
+  background: rgba(0, 0, 0, .1) url("../story/bg/landing.png") !important;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-size: contain !important; /* Resize the background image to cover the entire container */
+  background-blend-mode: darken;
 }
 
 .music{

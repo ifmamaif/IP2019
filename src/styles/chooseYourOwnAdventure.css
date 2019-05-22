@@ -12,6 +12,7 @@ body{
     align-items: center;
     background-color:red !important;
 }
+
 .parent{
     display: flex;
     flex-direction: row;

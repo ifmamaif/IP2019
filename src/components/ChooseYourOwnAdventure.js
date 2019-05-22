@@ -1,8 +1,9 @@
 import React from 'react'
 import "../styles/chooseYourOwnAdventure.css";
 import ajax from "../services/fetchStory"
-
-import {Redirect, BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+import TitleScreen from "../components/TitleScreen"
+import Record from"../components/Record"
+import {Redirect, BrowserRouter, Switch, Route, Link, withRouter} from 'react-router-dom';
 
 
 import {FlippingCard, FlippingCardBack,FlippingCardFront} from "react-ui-cards"
@@ -64,8 +65,13 @@ class ChooseYourOwnAdventure extends React.Component {
     }
 
 
-    handleSubmit = (event) => {
-
+    selectStory = (event) => {
+        // this.props.history.replace("TitleScreen")
+        this.props.history.push({
+            pathname: '/TitleScreen',
+            search: '?query=abc',
+            state: "test"
+        })
     };
 
     //Sets state for username and password ( after a key is pressed )
@@ -91,7 +97,7 @@ class ChooseYourOwnAdventure extends React.Component {
                         {/*<Button variant="contained" className="select-button">*/}
                             {/*Select Adventure*/}
                         {/*</Button>*/}
-                        <Button color="primary" variant="contained" className="select-button" >
+                        <Button color="primary" variant="contained" className="select-button"   onClick={this.selectStory}>
                             Select Adventure
                         </Button>
                         <img className="card-back" src={story.img} alt="imaginea mea" />
@@ -107,5 +113,5 @@ class ChooseYourOwnAdventure extends React.Component {
 
 
 
-export default ChooseYourOwnAdventure;
+export default withRouter(ChooseYourOwnAdventure);
 

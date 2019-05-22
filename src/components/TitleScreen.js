@@ -9,7 +9,7 @@ function TitleScreen(props) {
     <div>
       <Music url={backgroundMusic}/>
       <div id="title-screen-header">
-        <div id="logo">The Fairytale Machine</div>
+        <div id="logo">The story of IP</div>
         <ul id="menu">
           <li>
             <span className="center-custom" onClick={props.beginStory}>Begin</span>

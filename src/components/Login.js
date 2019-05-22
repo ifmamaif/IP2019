@@ -93,7 +93,7 @@ class Login extends React.Component {
                 });
                 window.localStorage.setItem('auth_token', token);
                 console.log("ne mutam in Record")
-                this.props.history.replace('Record');
+                this.props.history.replace('ChooseYourOwnAdventure');
             }
             else{
                 this.setState({
@@ -151,7 +151,7 @@ console.log("afisez state-ul ",this.state)
         if (this.state.auth) {
             return <Redirect to="../calendar" />;
         }
-
+        let {classes} = styles;
         return (
             <div id="background " className="spotlight">
                 <Music id="music" url={backgroundMusic}/>
@@ -165,7 +165,7 @@ console.log("afisez state-ul ",this.state)
                             id="username"
                             style={styles.textfield}
                             error
-                            label="Nume utilizator"
+                            label="Username"
                             onChange={this.handleInputChange}
                             helperText={this.state.errorUsername}
                         />
@@ -175,7 +175,7 @@ console.log("afisez state-ul ",this.state)
                             style={styles.textfield}
                             error
                             type="password"
-                            label="Parola"
+                            label="Password"
                             onChange={this.handleInputChange}
                             helperText={this.state.errorPassword}
                         />
@@ -195,12 +195,21 @@ console.log("afisez state-ul ",this.state)
 }
 
 //Style TextField component
-
-const styles = {
+const styles = theme => ({
+    multilineColor:{
+        color:'red'
+    },
     textfield: {
         width: '90%',
-    }
-};
+        color:"white !important"}
+});
+//
+// const styles = {
+//     textfield: {
+//         width: '90%',
+//         color:"white !important"
+//     }
+// };
 
 export default withRouter(Login);
 

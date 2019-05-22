@@ -44,6 +44,130 @@ let story = [
     spriteLeftTransition: "from-right-leave-left",
     spriteLeft: bn,
   },
+  {
+    bg: facultate,
+    bgm: take,
+    sprite: bn,
+    speaker: b,
+    text: "Bine ai venit la FMI",
+    // spriteEffect: "shrink",
+  },
+  {
+    text: "Acum vei afla mai multe despre povestea noastra"
+  },
+  {
+    text: "Esti gata sa inceapa aventura?"
+  },
+  {
+    text:
+        "Aventura, strigati ura !"
+  },
+  {
+    bgTransition: "scene-change",
+    bg: microphone,
+  },
+  { spriteEffect: "grow", text: 'Acum e mai mare' },
+  { spriteEffect: "shrink-back", text: 'Acum e ca la inceput' },
+  { spriteEffect: "shrink", text: 'Acum e pitic' },
+  { spriteEffect: "grow-back", text: 'Acum e pitic' },
+  {
+    speaker: "",
+    spriteLeftTransition: "from-right-leave-left",
+    spriteLeft: bn,
+  },
+  {
+    bg: facultate,
+    bgm: take,
+    sprite: bn,
+    speaker: b,
+    text: "Bine ai venit la FMI",
+    // spriteEffect: "shrink",
+  },
+  {
+    text: "Acum vei afla mai multe despre povestea noastra"
+  },
+  {
+    text: "Esti gata sa inceapa aventura?"
+  },
+  {
+    text:
+        "Aventura, strigati ura !"
+  },
+  {
+    bgTransition: "scene-change",
+    bg: microphone,
+  },
+  { spriteEffect: "grow", text: 'Acum e mai mare' },
+  { spriteEffect: "shrink-back", text: 'Acum e ca la inceput' },
+  { spriteEffect: "shrink", text: 'Acum e pitic' },
+  { spriteEffect: "grow-back", text: 'Acum e pitic' },
+  {
+    speaker: "",
+    spriteLeftTransition: "from-right-leave-left",
+    spriteLeft: bn,
+  },
+  {
+    bg: facultate,
+    bgm: take,
+    sprite: bn,
+    speaker: b,
+    text: "Bine ai venit la FMI",
+    // spriteEffect: "shrink",
+  },
+  {
+    text: "Acum vei afla mai multe despre povestea noastra"
+  },
+  {
+    text: "Esti gata sa inceapa aventura?"
+  },
+  {
+    text:
+        "Aventura, strigati ura !"
+  },
+  {
+    bgTransition: "scene-change",
+    bg: microphone,
+  },
+  { spriteEffect: "grow", text: 'Acum e mai mare' },
+  { spriteEffect: "shrink-back", text: 'Acum e ca la inceput' },
+  { spriteEffect: "shrink", text: 'Acum e pitic' },
+  { spriteEffect: "grow-back", text: 'Acum e pitic' },
+  {
+    speaker: "",
+    spriteLeftTransition: "from-right-leave-left",
+    spriteLeft: bn,
+  },
+  {
+    bg: facultate,
+    bgm: take,
+    sprite: bn,
+    speaker: b,
+    text: "Bine ai venit la FMI",
+    // spriteEffect: "shrink",
+  },
+  {
+    text: "Acum vei afla mai multe despre povestea noastra"
+  },
+  {
+    text: "Esti gata sa inceapa aventura?"
+  },
+  {
+    text:
+        "Aventura, strigati ura !"
+  },
+  {
+    bgTransition: "scene-change",
+    bg: microphone,
+  },
+  { spriteEffect: "grow", text: 'Acum e mai mare' },
+  { spriteEffect: "shrink-back", text: 'Acum e ca la inceput' },
+  { spriteEffect: "shrink", text: 'Acum e pitic' },
+  { spriteEffect: "grow-back", text: 'Acum e pitic' },
+  {
+    speaker: "",
+    spriteLeftTransition: "from-right-leave-left",
+    spriteLeft: bn,
+  },
 
 ];
 
