@@ -31,6 +31,7 @@
     "react-scripts": "1.0.17",
     "react-select": "^2.0.0-beta.4",
     "react-sound": "^1.1.0",
+    "react-ui-cards": "^1.5.0",
     "recordrtc": "^5.5.4",
     "typeface-roboto": "0.0.54",
     "vcap_services": "^0.7.0",

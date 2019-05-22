@@ -1,21 +1,12 @@
 import React from 'react'
-import "../styles/Login.css";
-import Login from "../components/Login"
+import "../styles/chooseYourOwnAdventure.css";
 import ajax from "../services/fetchStory"
-import Record from "../components/Record"
-// import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import TextField from '@material-ui/core/TextField';
-import strings from '../res/strings'
+
 import {Redirect, BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+
+import {FlippingCard, FlippingCardBack,FlippingCardFront} from "react-ui-cards"
+import Button from "@material-ui/core/Button";
 
 const styles = {
     card: {
@@ -91,44 +82,30 @@ class ChooseYourOwnAdventure extends React.Component {
         let {stories} = this.state;
         console.log(stories);
         return (
-            <div>
-            {stories.map((story) => {
-                    return(
-        <Card classes={styles.card}>
-            <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    className={styles.media}
-                    height="300"
-                    width="300"
-                    src={story.img}
-                    title="Contemplative Reptile"
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {story.title}
-                    </Typography>
-                    <Typography component="p">
-                        In caz ca ne hotaram sa punem o descriere
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    Select Adventure
-                </Button>
-                <Button size="small" color="primary">
-                    Learn More
-                </Button>
-            </CardActions>
-        </Card>)                })}
-    }
-            </div>
-        );
+            <div className="parent container">
+        {stories.map((story) => {
+            return (
+                <FlippingCard className="parent entire-card">
+                    <FlippingCardBack className="parent">
+                        <h1>{story.title}</h1>
+                        {/*<Button variant="contained" className="select-button">*/}
+                            {/*Select Adventure*/}
+                        {/*</Button>*/}
+                        <Button color="primary" variant="contained" className="select-button" >
+                            Select Adventure
+                        </Button>
+                        <img className="card-back" src={story.img} alt="imaginea mea" />
+
+                    </FlippingCardBack>
+                    <FlippingCardFront className="parent">
+                        <img className="card-front" src="https://cdn5.f-cdn.com/contestentries/342444/7309306/56b791c9efbd8_thumb900.jpg" alt="imaginea mea"/>
+                    </FlippingCardFront>
+                </FlippingCard>);})}</div>);
+
     }
 }
 
 
-export default withStyles(styles)(ChooseYourOwnAdventure);
+
+export default ChooseYourOwnAdventure;
 

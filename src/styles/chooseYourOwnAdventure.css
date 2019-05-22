@@ -1,0 +1,51 @@
+body{
+    background:  rgba(0, 0, 0, .45) url("http://www.jumpthecurve.net/wp-content/uploads/2013/07/mapbig.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-blend-mode: darken;
+}
+
+.card-back , .card-front{
+    height: 75%;
+    display: flex;
+    align-items: center;
+    background-color:red !important;
+}
+.parent{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center !important;
+    height:50px;
+}
+
+.entire-card:hover {
+    background: url("https://i.pinimg.com/originals/2b/08/32/2b083225b9fac1e7db5b77d0210274d0.jpg") !important;
+    border-radius: 25px;
+    border: 2px solid #000000;
+    box-shadow: 3px 3px #000000;
+
+
+}
+
+.container{
+    height: 100vh;
+}
+
+
+.select-button
+{
+    /*position:relative;*/
+    background-color: #ab8f39 !important;
+    color: rgba(255, 255, 255, 0.9);
+    left:20%;
+    font-weight: bold;
+    margin:5% !important;
+    margin-top:8% !important;
+    width:50% !important;
+    text-align:center !important;
+    font-size:12px !important;
+    /*font-size:1.2vw !important;*/
+}
+
