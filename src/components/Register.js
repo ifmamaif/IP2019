@@ -1,16 +1,15 @@
 import React from 'react'
 import "../styles/Login.css";
-import ajax from "../services/Auth"
+import Login from "../components/Login"
+import ajax from "../services/register"
 import Record from "../components/Record"
 // import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import Music from "../components/Music"
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import strings from '../res/strings'
-import backgroundMusic from '../story/sounds/bedtime.mp3';
-import {Redirect, BrowserRouter, Switch, Route,Link,withRouter} from 'react-router-dom';
+import {Redirect, BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,37 +25,13 @@ class Login extends React.Component {
     }
 
     async componentDidMount() {
-        //DOM load event
-        window.addEventListener("DOMContentLoaded", () => {
+        // window.addEventListener("beforeunload", e => (e.returnValue = "Unsaved changes will be lost."));
+        // const data = await ajax.login();
+        // console.log(data);
 
-            const spotlight = document.querySelector('.spotlight');
-
-            let spotlightSize = 'transparent 160px, rgba(0, 0, 0, 0.85) 200px)';
-
-            window.addEventListener('mousemove', e => updateSpotlight(e));
-
-            window.addEventListener('mousedown', e => {
-
-                spotlightSize = 'transparent 130px, rgba(0, 0, 0, 0.95) 150px)';
-
-                updateSpotlight(e);
-
-            });
-
-            window.addEventListener('mouseup', e => {
-
-                spotlightSize = 'transparent 160px, rgba(0, 0, 0, 0.85) 200px)';
-
-                updateSpotlight(e);
-
-            });
-
-            function updateSpotlight(e) {
-
-                spotlight.style.backgroundImage = `radial-gradient(circle at ${e.pageX / window.innerWidth * 100}% ${e.pageY / window.innerHeight * 100}%, ${spotlightSize}`;
-
-            }
-        });
+        // this.setState({
+        //   ceva: da
+        // })
     }
 
 
@@ -79,33 +54,32 @@ class Login extends React.Component {
 
         let loginData = {password};
         loginData["user_name"] = username;
-        ajax.login(loginData).then((data) => {
-            console.log("data este ",data["token"])
-            var token = data["token"];
-            if(data.hasOwnProperty("token"))
+        ajax.register(loginData).then((responseCode) => {
+            debugger;
+            if(responseCode ==  200 || responseCode == 201 )
             {
                 this.setState({
                     showProgress : false,
-                    auth_token : token,
                     isLogged : true,
-                    auth:true,
                     errorMessage : ''
                 });
-                window.localStorage.setItem('auth_token', token);
-                console.log("ne mutam in Record")
-                this.props.history.replace('Record');
+                console.log("Inregistrat cu succes");
+                // window.location.replace(Login);
+                this.props.history.replace("Login")
             }
             else{
+                console.log("Numele de utilizator trebuie sa fie unic");
                 this.setState({
                     showProgress : false,
                     isLogged : false,
                     errorMessage : 'Username or password invalid'
                 })
+
             }
         }).catch(error => {
             console.log(error);
         });
-console.log("afisez state-ul ",this.state)
+        console.log("afisez state-ul ",this.state)
     };
     check = (value) => {
         if (value === '' || value === null || typeof(value) === undefined)
@@ -118,7 +92,7 @@ console.log("afisez state-ul ",this.state)
         let newValue = null;
         console.log(target);
         if (value === false)
-            newValue = strings.login[target];
+            newValue = strings.register[target];
         else
             newValue = '';
         this.setState(() => ({
@@ -147,19 +121,24 @@ console.log("afisez state-ul ",this.state)
         )
     };
 
+    goToLogin = () => {
+
+        this.props.history.replace("Login")
+
+    };
+
     render() {
         if (this.state.auth) {
             return <Redirect to="../calendar" />;
         }
 
         return (
-            <div id="background " className="spotlight">
-                <Music id="music" url={backgroundMusic}/>
+            <div id="background">
                 <div id="login">
                     <div>
-                        <h3 className="loginTitle">{strings.login.title}</h3>
+                        <h3 className="loginTitle">{strings.register.title}</h3>
                         <p className="loginStory">
-                            {strings.login.description}
+                            {strings.register.description}
                         </p>
                         <TextField
                             id="username"
@@ -182,13 +161,18 @@ console.log("afisez state-ul ",this.state)
                         <br/>
                         <Button id="loginButton" label="Submit" color="primary" variant="contained"
                                 onClick={this.handleSubmit}>
-                            {strings.login.button}
+                            {strings.register.button}
                         </Button>
+                        <span id="my-span">Already have an account ?<a
+                            onClick={this.goToLogin}><span id="promo">Log in</span>
+                        </a></span>
                     </div>
                 </div>
+                {/*<Switch>*/}
+            {/*<Redirect to='./login' />*/}
+                {/*</Switch>*/}
                 {/*<img src={require('../res/images/donorium.png')} alt="Logo" id="logo"/>*/}
                 {/*Token-ul este : {this.state.auth_token}*/}
-                {/*<div className="spotlight"/>*/}
             </div>
         );
     }
@@ -199,8 +183,9 @@ console.log("afisez state-ul ",this.state)
 const styles = {
     textfield: {
         width: '90%',
+        color: 'red',
     }
 };
 
-export default withRouter(Login);
+export default Register;
 

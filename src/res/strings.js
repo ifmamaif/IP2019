@@ -6,6 +6,13 @@ const strings = {
         errorUsername : '*Va rugam sa introduceti numele e utilizator',
         errorPassword : '*Va rugam sa introduceti parola'
     },
+    register: {
+        title: 'Register',
+        description: "E timpul sa-ti faci un cont, boss !",
+        button: 'REGISTER',
+        errorUsername : '*Username obligatoriu',
+        errorPassword : '*Parola obligatorie'
+    },
 };
 
 export default strings;

@@ -1,6 +1,8 @@
 import React from 'react'
 import { ReactMic } from 'react-mic';
 import RecordRTC from 'recordrtc';
+import ajax from"../services/sendAudio"
+import { Link, withRouter } from 'react-router-dom'
 import AudioRecorders from 'audio-recorders'
 
 class Record extends React.Component {
@@ -51,7 +53,10 @@ class Record extends React.Component {
                 let blob = recorder.getBlob();
                 console.log(blob)
             });
+
         });
+        // ajax.sendAudio(blob);
+
 
 
     }
@@ -90,4 +95,4 @@ class Record extends React.Component {
     }
 }
 
-export default Record;
+export default withRouter(Record);

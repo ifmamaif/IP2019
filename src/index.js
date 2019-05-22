@@ -1,11 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Login from "./components/Login"
+import Register from "./components/Register"
 import Record from "./components/Record"
+import {Router} from 'react-router-dom';
 import "./styles/index.css";
-
+import history from './history';
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
+import Disperare from "./Disperare";
+import WatsonAPI from "./components/WatsonAPI"
+import ChooseYourOwnAdventure from "./components/ChooseYourOwnAdventure";
 
-ReactDOM.render(<Record />, document.getElementById("root"));
+// ReactDOM.render(<Disperare/>, document.getElementById("root"));
+ReactDOM.render(<Router history ={history}><Disperare/></Router>, document.getElementById("root"));
 registerServiceWorker();

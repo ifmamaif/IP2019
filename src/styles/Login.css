@@ -1,26 +1,64 @@
-#background
+body
 {
     width:100vw;
     height:100vh;
-    background: linear-gradient(to top, #f3f3f3 70%, #ed1b2b 30%);
+    /*background: linear-gradient(to top, #f3f3f3 70%, #ed1b2b 30%);*/
+    background: rgba(0, 0, 0, .1) url("https://i.pinimg.com/originals/c5/be/87/c5be874a7fe177b4be2c55bbe6dea7d3.jpg");
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-blend-mode: darken;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+html, body{
+    height: 100%;
+    margin: 0;
+    padding:0;
+
+}
+
+#music{
+    z-index : 99;
+    border:2px solid white;
+}
+
+
+.spotlight {
+    position: absolute;
+    background: rgba(0, 0, 0, .4) url("https://i.pinimg.com/originals/c5/be/87/c5be874a7fe177b4be2c55bbe6dea7d3.jpg");
+    height: 100vh;
+    width: 100vw;
+    /*background-image: radial-gradient(*/
+            /*circle,*/
+            /*transparent 2px,*/
+            /*rgba(0, 0, 0, 0.85) 5px*/
+    /*);*/
 }
 
 #login
 {
     position:relative;
     top:20vh;
-    background: #fff;
+    background-color: rgba(0, 0, 0, 0.6);
     border-radius: 2px;
     display: inline-block;
     height: 45vh;
     margin: 1rem;
     width: 45vw;
+    left:25vw;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    z-index:100;
 }
 
 .loginTitle
 {
-    color:black;
+    color: #cb0011;
     text-align:initial;
     margin:5%;
     margin-bottom: 0;
@@ -34,15 +72,16 @@
     margin-top:2%;
     padding:0;
     text-align:initial;
-    color: #6f725c;
+    color: #fcffd0;
 }
 
 #loginButton
 {
     /*position:relative;*/
-    background-color: #ffb600 !important;
-    color: rgba(97, 22, 13, 0.7);
+    background-color: #ff0010 !important;
+    color: rgba(255, 255, 255, 0.9);
     left:37%;
+    font-weight: bold;
     margin:5% !important;
     margin-top:8% !important;
     width:15% !important;
@@ -53,4 +92,21 @@
 /*{*/
     /*background-color: #be8700 !important;*/
 /*}*/
-/*height:350 px width 700px*/
+
+#my-span {
+    margin-top:150px;
+    position:relative;
+    top:50px;
+    left:30%;
+}
+
+#promo {
+    font-weight: bold;
+    font-size:16px;
+    color:red;
+}
+
+#promo:hover {
+    color: #ff4c6d;
+    cursor: pointer;
+}
