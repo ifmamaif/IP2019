@@ -1,0 +1,15 @@
+{
+  "RoomId": 1,
+  "Content": "You are a traveller, living your life for adventure and mystery. Your travells have taken you to the furthest reaches of the continent, and some of your exploits are even sung about in taverns.\nAfter hearing stories of the mysterious happenings in Falnieth, you decide you want to see the city for yourself.\nAfter days of travel, you finally reach the city gates, where you are stopped by a guard.\n\'You there! Identify yourself! What is your name?\'\n",
+  "ImagePath": "Gate.jpg",
+  "CharacterImagePath":  "Guard-byzantine-ACR.png",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "tutorial_scene",
+  "Edges": [
+    {
+      "Labels": [],
+      "Destination": 2
+    }
+  ]
+}

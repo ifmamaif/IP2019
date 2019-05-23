@@ -1,0 +1,7 @@
+FROM python:3.7-slim
+
+RUN pip install --upgrade pip setuptools
+
+WORKDIR ./tfm_services_req
+
+EXPOSE 9190:9190

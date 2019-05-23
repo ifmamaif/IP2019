@@ -1,0 +1,35 @@
+{
+  "RoomId": 5,
+  "Content": "After wondering about for a time, you come upon a slave market. There are several slaves in cages and people are going about their daily tasks. One of the slaves tries to grab your attention.
+\'Stranger! Stranger! Come closer!\'\n
+As you approach the slave, you notice she looks somewhat different from the others.\n
+\'Word around the city is that you're looking for something... I could help you... but is it really want you want? We can flee... right now... \'\n
+You consider the slave's words. There is clearly something off about this city, and rescuing her might not be a bad way to escape this place. Of course, you could take her up on her offer
+and find one of those stones you were looking for. She seems eager to tell you about the tunnel the Order uses for smuggling in the stones. Kitty seems a bit desperate, maybe you could convince her
+to go with you to a different district and make a different sort of \'deal\'.\n",
+  "ImagePath": "Market.jpg",
+  "CharacterImagePath":  "Kitty.png",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "market_scene",
+  "Edges": [
+    {
+      "Labels": [
+        6
+      ],
+      "Destination": 8
+    },
+    {
+      "Labels": [
+        3
+      ],
+      "Destination": 6
+    },
+    {
+      "Labels": [
+        7
+      ],
+      "Destination": 7
+    }
+  ]
+}

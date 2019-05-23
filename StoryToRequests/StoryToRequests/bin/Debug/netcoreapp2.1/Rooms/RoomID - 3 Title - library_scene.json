@@ -1,0 +1,33 @@
+{
+  "RoomId": 3,
+  "Content": "After providing the guard with your name, you proceed inside the city. Although the city seems pretty normal on the surface, your experience tells you that nothing is ever quite what it seems.\n
+In order to get a better lay of the land, you decide to ask a nearby beggar for some information. As you approach the beggar, you quickly notice that there is something wrong with him.\n
+\'Hello stranger, please, spare some time and listen to my story. As you can see, life has not been kind to me; I used to be a solider. In order to win the war, we were tasked with creating unpredictable strategies, so we could confuse the enemy. To achieve our objective, we had to ingest dreamer stones, so we could alter the way we think about our world. What we did not know, is that these stoneswere highly addictive. If you can bring me one of these stones, I would be forever grateful. This city does not allow the proliferation of these stones freely, but I know of some places where you might find some. There is a slavegirl named Kitty in the market who sells them, but her supply comes from somewhere in a local tunnel. Please stranger, even one is more than enough.\'\n
+\n
+After hearing the beggar's story, you wonder whether you should explore the locations he mentioned, learn more about the city at the local library or try to hassle the beggar for some more information. ",
+  "ImagePath": "Library.jpg",
+  "CharacterImagePath":  "Library-Guard.png",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "library_scene",
+  "Edges": [
+    {
+      "Labels": [
+        2
+      ],
+      "Destination": 4
+    },
+    {
+      "Labels": [
+        1
+      ],
+      "Destination": 7
+    },
+    {
+      "Labels": [
+        6
+      ],
+      "Destination": 5
+    }
+  ]
+}

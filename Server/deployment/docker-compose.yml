@@ -1,0 +1,27 @@
+version: '3.2'
+
+services:
+    tfm_services:
+        build:
+          context: ./
+          dockerfile: tfm_services_dockerfile
+        image: slevy97/tfm_services:latest
+        container_name: tfm_services
+        volumes:
+          - type : bind
+            source: ./tfm_services_req
+            target: /tfm_services_req/ 
+        depends_on:
+          - tfm_mysql_db
+        ports:
+          - "9190:9190"
+        command: bash -c "pip install -e . && pserve tfm_services_dev.ini"
+    tfm_mysql_db:
+        image: mysql:latest
+        container_name: tfm_mysql_db
+        environment: 
+          MYSQL_ROOT_PASSWORD: the_fairytale_machine
+          MYSQL_DATABASE: the_fairytale_machine
+        volumes:
+          - "./mysql_db_req:/var/lib/mysql:rw"
+        command: --default-authentication-plugin=mysql_native_password

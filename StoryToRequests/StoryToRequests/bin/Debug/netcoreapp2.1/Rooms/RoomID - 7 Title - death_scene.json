@@ -1,0 +1,10 @@
+{
+  "RoomId": 7,
+  "Content": "You died!",
+  "ImagePath": "DeadEnd.jpg",
+  "CharacterImagePath":  "",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "death_scene",
+  "Edges": []
+}

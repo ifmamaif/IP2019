@@ -1,0 +1,35 @@
+{
+  "RoomId": 4,
+  "Content": "The guard takes you the Hall of the Necromantic Order. There are several acolytes practicing some sort of ritual. One of the more official looking members approaches you. His robes are clearly
+of a different cut from the others, and he walks towards you with the confidence of a person who is used to ordering other around.\n
+\n
+\'Greetings stranger, I am Zavier, high priest of the Order. I have heard of your exploits in other lands and wish to make you an offer. Some say that our Order is evil, but in this twisted world,
+morality is a luxury only the overly powerful can afford. Join us, traveller, and gain power beyond your wildest dreams... or else...\'\n
+\n
+Having heard the Zavier's offer, you ponder whether you should choose a life of evil and put your travelling behind you. On the other hand, you could try to steal his eye and selling it later; it seems to be exactly whatthe beggar was looking for, so maybe others would pay a hefty price for it. Of course, you can try telling him about Kitty and how you want to release her as an act of mercy, which would be profitable for the city.",
+  "ImagePath": "EvilOrder.jpg",
+  "CharacterImagePath":  "EvilPriest.jpg",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "order_scene",
+  "Edges": [
+    {
+      "Labels": [
+        5
+      ],
+      "Destination": 9
+    },
+    {
+      "Labels": [
+        8
+      ],
+      "Destination": 7
+    },
+    {
+      "Labels": [
+        6
+      ],
+      "Destination": 5
+    }
+  ]
+}

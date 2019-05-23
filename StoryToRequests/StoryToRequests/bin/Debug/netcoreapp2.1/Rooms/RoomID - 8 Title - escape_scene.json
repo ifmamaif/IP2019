@@ -1,0 +1,10 @@
+{
+  "RoomId": 8,
+  "Content": "You\'ve managed to escape the city!",
+  "ImagePath": "",
+  "CharacterImagePath":  "",
+  "SoundPath": "",
+  "Bias": "",
+  "Title": "escape_scene",
+  "Edges": []
+}

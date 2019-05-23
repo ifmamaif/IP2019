@@ -1,0 +1,7 @@
+setup.py
+tfm_services.egg-info/PKG-INFO
+tfm_services.egg-info/SOURCES.txt
+tfm_services.egg-info/dependency_links.txt
+tfm_services.egg-info/entry_points.txt
+tfm_services.egg-info/requires.txt
+tfm_services.egg-info/top_level.txt
