@@ -5,7 +5,9 @@ import Bird from "./Bird";
 import Record from "./ChooseYourOwnAdventure";
 import ajax from "../services/fetchChapters"
 import fetchResources from "../services/fetchResources"
+import blobToImg from "../services/blobToImg";
 
+var frontendChapter = null;
 class TitleScreen extends Component {
     constructor() {
         super();
@@ -18,29 +20,43 @@ class TitleScreen extends Component {
             "TFMAuthentication": token,
         };
 
-        let chapter = {
-            "chapter_ids": [1, 2],
-        };
-        if (token) {
-            ajax.tfm_get_chapters(objToken, chapter).then((chapterInfo) => {
-                if (chapterInfo != null && typeof (chapterInfo) !== "undefined") {
-                    console.log("din backend am primit", chapterInfo);
-                    fetchResources.fetchResources(chapterInfo.chapters[0]["cover_path"]).then((resource) => {
-                        console.log("poza este", resource)
-                    }).catch(error => {
-                        console.log(error);
-                    });
-                    this.setState({
-                        stories: chapterInfo.stories,
-                    });
-                    console.log("stories,", this.state.stories);
-                } else {
-                    console.log("ceva nu e bine, Tap; fara povesti azi")
-                }
-            }).catch(error => {
-                console.log(error);
-            });
-        }
+        // let chapter = {
+        //     "chapter_ids": [1],
+        // };
+        // if (token) {
+        //     ajax.tfm_get_chapters(objToken, chapter).then((chapterInfo) => {
+        //         if (chapterInfo != null && typeof (chapterInfo) !== "undefined") {
+        //             console.log("din backend am primit", chapterInfo);
+        //             // debugger;
+        //             let firstChapter = chapterInfo.chapters[0];
+        //             fetchResources.fetchResources(firstChapter["cover_path"]).then((resource) => {
+        //
+        //                 console.log("RESOURCE", resource);
+        //                 blobToImg(resource).then(async(result)  =>{
+        //                     // let frontendChapter  = story[0];
+        //                     let frontendChapter = {
+        //                         "text" : firstChapter.setting,
+        //                         "bg" : result,
+        //                         bgTransition: "scene-change",
+        //                     };
+        //                     console.log(" !!!! frontendChapter  ", frontendChapter);
+        //
+        //                     // story = [...story, frontendChapter];
+        //                 });
+        //             }).catch(error => {
+        //                 console.log(error);
+        //             });
+        //             this.setState({
+        //                 stories: chapterInfo.stories,
+        //             });
+        //             console.log("stories,", this.state.stories);
+        //         } else {
+        //             console.log("ceva nu e bine, Tap; fara povesti azi")
+        //         }
+        //     }).catch(error => {
+        //         console.log(error);
+        //     });
+        // }
         // console.log("afisez state-ul TAAAAAAAAAAAAAP ",this.state)
     }
 

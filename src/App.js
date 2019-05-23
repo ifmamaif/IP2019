@@ -5,7 +5,7 @@ import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import Fullscreen from "react-full-screen";
 import WheelReact from "wheel-react";
 // API
-import temp from "./story/story";
+// import temp from "./story/story";
 import choices from "./story/choices";
 // import ajax from "./services/Auth"
 // Components
@@ -36,9 +36,13 @@ import Record from "./components/ChooseYourOwnAdventure";
 import Artyom from "artyom.js";
 
 import ajax from "./services/sendResponse"
+import tfm_get_chapters from "./services/fetchChapters"
+import fetchResources from "./services/fetchResources";
+import blobToImg from "./services/blobToImg";
 
-var story = temp;
-console.log("la inceput povestea este", temp);
+const bn = require("./story/sprites/block-neutral.png");
+
+var story = {};
 
 
 // setInterval = (() => {
@@ -98,6 +102,62 @@ class App extends Component {
 
 
     componentDidMount() {
+
+        let token = localStorage.getItem('auth_token');
+        let objToken = {
+            "TFMAuthentication": token,
+        };
+        let chapter = {
+            "chapter_ids": [1],
+        };
+        if (token) {
+            var frontendChapter = {};
+            tfm_get_chapters.tfm_get_chapters(objToken, chapter).then((chapterInfo) => {
+                if (chapterInfo != null && typeof (chapterInfo) !== "undefined") {
+                    console.log("din backend am primit", chapterInfo);
+                    // debugger;
+                    let firstChapter = chapterInfo.chapters[0];
+                    fetchResources.fetchResources(firstChapter["cover_path"]).then((resource) => {
+
+                        console.log("RESOURCE", resource);
+                        blobToImg(resource).then(async(result)  =>{
+                            // let frontendChapter  = story[0];
+                             frontendChapter["text"] = firstChapter.setting;
+                             frontendChapter["bg"] = result;
+                             frontendChapter["speaker"] = "Legendary IP Hero";
+                             frontendChapter["bgTransition"] =  "scene-change";
+
+                            // story = [...story, frontendChapter];
+                        });
+                    }).catch(error => {
+                        console.log(error);
+                    });
+
+                    fetchResources.fetchResources(firstChapter["character_path"]).then((resource) => {
+
+                        blobToImg(resource).then(async(result)  =>{
+
+                            frontendChapter["bn"] = result;
+                            story = [...story, frontendChapter];
+                            console.log(" !!!! first  ", frontendChapter);
+                        });
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    this.setState({
+                        stories: chapterInfo.stories,
+                    });
+                    console.log("stories,", this.state.stories);
+                } else {
+                    console.log("ceva nu e bine, Tap; fara povesti azi")
+                }
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+
+
+
         const artyom = new Artyom();
 
 // This function activates artyom and will listen and execute only 1 command (for http connections)
@@ -155,6 +215,7 @@ class App extends Component {
             }
         });
 
+        // fetch data for the new chapter
         setInterval(() => {
             console.log("ce a vrut sa zica este :", this.state.speechToText);
             let token = localStorage.getItem('auth_token');
@@ -164,11 +225,54 @@ class App extends Component {
             let chapter = 5;
 
             if(this.state.speechToText !== null && this.state.speechToText !== "undefiend" && this.state.speechToText !== ""){
-                ajax.tfm_send_chapter_response(objToken,chapter,this.state.speechToText).then((response) => {
-                 console.log("noul capitol e ", response);
+                ajax.tfm_send_chapter_response(objToken,chapter,this.state.speechToText).then((newChapterId) => {
+                 console.log("noul capitol e ", newChapterId);
+                 let chapter = {
+                     "chapter_ids" : [newChapterId["next_chapter_id"]]
+                 }
                  this.setState({
                      speechToText : ""
-                 })
+                 });
+
+                    tfm_get_chapters.tfm_get_chapters(objToken, chapter).then((chapterInfo) => {
+                        if (chapterInfo != null && typeof (chapterInfo) !== "undefined") {
+                            console.log("din backend am primit", chapterInfo);
+                            let selectedChapter = chapterInfo.chapters[0];
+                            fetchResources.fetchResources(selectedChapter["cover_path"]).then((resource) => {
+                                console.log("poza este", resource);
+                                blobToImg(resource).then(async(result)  =>{
+                                    // this.setState({
+                                    //     b64img : result,
+                                    // });
+
+                                    let frontendChapter  = story[0];
+                                    frontendChapter = {
+                                        "text" : selectedChapter.setting,
+                                        "bg" : result,
+                                        bgTransition: "scene-change",
+                                    };
+                                    console.log("frontendChapter  ", frontendChapter);
+                                    story = [...story, frontendChapter];
+
+
+
+
+                                   console.log("result",result);
+                                });
+
+                            }).catch(error => {
+                                console.log(error);
+                            });
+                            this.setState({
+                                stories: chapterInfo.stories,
+                            });
+                            console.log("stories,", this.state.stories);
+                        } else {
+                            console.log("ceva nu e bine, Tap; fara povesti azi")
+                        }
+                    }).catch(error => {
+                        console.log(error);
+                    });
 
                 }).catch(error => {
                     console.log(error);
@@ -183,7 +287,7 @@ class App extends Component {
             story = [...story, obj];
             // console.log("noua poveste",story)
 
-        }, 2000);
+        }, 2000000);
 
         UserDictation.start();
 
