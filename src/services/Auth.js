@@ -7,10 +7,6 @@ const URI = 'http://ec2-18-220-99-193.us-east-2.compute.amazonaws.com:9190';
 export default {
     async login(loginData) {
         try {
-            // let data = {
-            //     "email" : "tap@tap.com",
-            //     "password" : "tap"
-            // };
             console.log("loginData este",loginData)
             const config = {
                 method: 'POST',

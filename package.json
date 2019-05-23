@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "@material-ui/core": "^3.4.0",
     "@material-ui/icons": "^3.0.1",
+    "artyom.js": "^1.0.6",
     "audio-recorders": "^1.1.9",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",

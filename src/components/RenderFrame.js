@@ -9,7 +9,7 @@ class RenderFrame extends React.Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(() => this.props.setNextFrame(), 3000);
+    this.interval = setInterval(() => this.props.setNextFrame(), 5000);
   }
 
   componentWillUnmount() {

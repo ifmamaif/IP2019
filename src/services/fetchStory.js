@@ -4,25 +4,24 @@ export default {
 
     async fetchStory(token) {
         try {
-            console.log("loginData este",token)
+            var aux = ((JSON.stringify(token.TFMAuthentication)).substr(1)).slice(0, -1);
+            console.log("JSON.stringify(token) ",((JSON.stringify(token.TFMAuthentication)).substr(1)).slice(0, -1));
+
+
             const config = {
-                method: 'POST',
+                method: 'GET',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin' : '*',
-                    'Access-Control-Allow-Credentials' :'true'
+                    'TFMAuthentication' : aux,
                 },
-                body: JSON.stringify(token)
             };
             let response = await fetch(URI + '/tfm_get_all_stories',config);
-            // console.log(response);
+            console.log(response);
             // console.log(response.status);
             //
             return await response.json();
         }
         catch(e) {
-            console.log(e)
+            console.log("EROAREA ESTE " ,e)
         }
     }
 }
