@@ -39,8 +39,11 @@ import ajax from "./services/sendResponse"
 import tfm_get_chapters from "./services/fetchChapters"
 import fetchResources from "./services/fetchResources";
 import blobToImg from "./services/blobToImg";
+import fastChunkString from "fast-chunk-string"
 
 const bn = require("./story/sprites/block-neutral.png");
+
+
 
 var story = {};
 
@@ -108,26 +111,29 @@ class App extends Component {
             "TFMAuthentication": token,
         };
         let chapter = {
-            "chapter_ids": [1],
+            "chapter_ids": [1,2],
         };
         if (token) {
             var frontendChapter = {};
+            var part2 = {};
+            var secondFrontendChapter = {};
             tfm_get_chapters.tfm_get_chapters(objToken, chapter).then((chapterInfo) => {
                 if (chapterInfo != null && typeof (chapterInfo) !== "undefined") {
                     console.log("din backend am primit", chapterInfo);
                     // debugger;
                     let firstChapter = chapterInfo.chapters[0];
+                    let secondChapter = chapterInfo.chapters[1];
+
+                    let mesaj = fastChunkString(firstChapter.setting, {size: 262, unicodeAware: true});
                     fetchResources.fetchResources(firstChapter["cover_path"]).then((resource) => {
+
 
                         console.log("RESOURCE", resource);
                         blobToImg(resource).then(async(result)  =>{
-                            // let frontendChapter  = story[0];
-                             frontendChapter["text"] = firstChapter.setting;
+                             frontendChapter["text"] = mesaj[0];
                              frontendChapter["bg"] = result;
                              frontendChapter["speaker"] = "Legendary IP Hero";
                              frontendChapter["bgTransition"] =  "scene-change";
-
-                            // story = [...story, frontendChapter];
                         });
                     }).catch(error => {
                         console.log(error);
@@ -137,23 +143,58 @@ class App extends Component {
 
                         blobToImg(resource).then(async(result)  =>{
 
+                            debugger;
                             frontendChapter["bn"] = result;
-                            story = [...story, frontendChapter];
-                            console.log(" !!!! first  ", frontendChapter);
                         });
                     }).catch(error => {
                         console.log(error);
                     });
+
+
+                    fetchResources.fetchResources(secondChapter["cover_path"]).then((resource) => {
+
+                        console.log("RESOURCE", resource);
+                        blobToImg(resource).then(async(result)  =>{
+                            // let frontendChapter  = story[0];
+                            secondFrontendChapter["text"] = secondChapter.setting;;
+                            secondFrontendChapter["bg"] = result;
+                            secondFrontendChapter["speaker"] = "Legendary IP Hero";
+                            secondFrontendChapter["bgTransition"] =  "scene-change";
+                        });
+                    }).catch(error => {
+                        console.log(error);
+                    });
+
+                    fetchResources.fetchResources(secondChapter["character_path"]).then((resource) => {
+
+                        blobToImg(resource).then(async(result)  =>{
+
+                            secondFrontendChapter["bn"] = result;
+                        });
+                    }).catch(error => {
+                        console.log(error);
+                    });
+
+                    part2 =  JSON.parse(JSON.stringify(frontendChapter));
+                    console.log("obj este", part2)
+                    part2["text"] = "Taaap";
+
+                    story = [...story, frontendChapter,part2,secondChapter];
+                    console.log("Poveste in ordine !!!!!!",story)
                     this.setState({
                         stories: chapterInfo.stories,
                     });
-                    console.log("stories,", this.state.stories);
+
                 } else {
                     console.log("ceva nu e bine, Tap; fara povesti azi")
                 }
             }).catch(error => {
                 console.log(error);
             });
+
+
+
+
         }
 
 
@@ -280,14 +321,6 @@ class App extends Component {
                 console.log("afisez state-ul ",this.state)
             }},8000);
 
-        setInterval(() => {
-            let myStr = "Pentru ca asa a zis TAP!" + Math.random();
-            let obj = story[9];
-            obj["text"] = myStr;
-            story = [...story, obj];
-            // console.log("noua poveste",story)
-
-        }, 2000000);
 
         UserDictation.start();
 
